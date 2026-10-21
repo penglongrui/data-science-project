@@ -40,7 +40,7 @@ Three sub-questions guide the analysis:
 | Licence | **CC0 1.0 Universal (public domain dedication)** — free to use, modify and redistribute for any purpose, including commercial use, without permission |
 | Citation requested | Horst AM, Hill AP, Gorman KB (2020). *palmerpenguins: Palmer Archipelago (Antarctica) penguin data*. R package version 0.1.0. <https://allisonhorst.github.io/palmerpenguins/> |
 | Personal data | None. The records describe animals, not people; there is no identifier that could re-identify an individual |
-| Copy in this repo | `data/penguins.csv` (344 rows × 8 columns, 15 KB) is redistributed under the same CC0 terms so that the analysis runs offline |
+| Copy in this repo | `penguins.csv` (344 rows × 8 columns, 15 KB) is redistributed under the same CC0 terms so that the analysis runs offline |
 
 **Sensitive information:** the repository contains no credentials, API keys, personal data or
 restricted data.
@@ -103,13 +103,13 @@ why Gentoo penguins are heavier.
 
 | Figure | What it shows |
 |---|---|
-| [`figures/fig1_species_clusters.png`](figures/fig1_species_clusters.png) | Bill length vs bill depth; colour = species, marker = island |
-| [`figures/fig2_island_confound.png`](figures/fig2_island_confound.png) | Species × island grid (empty cells) and η² by grouping |
-| [`figures/fig3_model_diagnostics.png`](figures/fig3_model_diagnostics.png) | Random-forest feature importance and cross-validated confusion matrix |
+| [`fig1_species_clusters.png`](fig1_species_clusters.png) | Bill length vs bill depth; colour = species, marker = island |
+| [`fig2_island_confound.png`](fig2_island_confound.png) | Species × island grid (empty cells) and η² by grouping |
+| [`fig3_model_diagnostics.png`](fig3_model_diagnostics.png) | Random-forest feature importance and cross-validated confusion matrix |
 
-![Bill shape separates the three species](figures/fig1_species_clusters.png)
+![Bill shape separates the three species](fig1_species_clusters.png)
 
-![Island is a proxy for species](figures/fig2_island_confound.png)
+![Island is a proxy for species](fig2_island_confound.png)
 
 ## 6. How to run the analysis
 
@@ -141,34 +141,39 @@ adelie_island_anova_p: 0.9952
 cv_accuracy_mean: 0.97
 ```
 
-Outputs are written to `figures/` (three PNG files at 200 dpi) and `results/metrics.json`
-(every number quoted above). The run is deterministic: all random seeds are fixed at 42, so a
-fresh clone reproduces the figures and metrics exactly.
+Outputs are written next to the script: three PNG files at 200 dpi
+(`fig1_species_clusters.png`, `fig2_island_confound.png`, `fig3_model_diagnostics.png`) and
+`metrics.json`, which holds every number quoted above. The run is deterministic: all random
+seeds are fixed at 42, so a fresh clone reproduces the figures and metrics exactly.
 
 To refresh the data from the upstream source instead of using the bundled copy:
 
 ```bash
-curl -o data/penguins.csv \
+curl -o penguins.csv \
   https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv
 ```
 
 ## 7. Repository structure
 
+The repository is deliberately flat: one script, one data file, three figures and one metrics
+file, all in the root folder. Nothing is buried in sub-folders, and every path the code writes
+matches the path documented here.
+
 ```
 data-science-project/
-├── analysis.py            # the entire, reproducible pipeline
-├── data/
-│   └── penguins.csv       # CC0 dataset copy (no download needed to reproduce)
-├── figures/               # generated visualisations
-├── results/
-│   └── metrics.json        # every number quoted in this README
-├── requirements.txt
-├── LICENSE                 # MIT for the code
-└── README.md
+├── analysis.py                    # the entire, reproducible pipeline
+├── penguins.csv                   # CC0 dataset copy (no download needed to reproduce)
+├── fig1_species_clusters.png      # generated: bill shape by species and island
+├── fig2_island_confound.png       # generated: species x island grid + eta-squared
+├── fig3_model_diagnostics.png     # generated: feature importance + confusion matrix
+├── metrics.json                   # generated: every number quoted in this README
+├── requirements.txt               # runtime dependencies
+├── LICENSE                        # MIT for the code; data stays CC0
+└── README.md                      # this document
 ```
 
 ## 8. Licence
 
 - **Code** (`analysis.py`): MIT — see [LICENSE](LICENSE).
-- **Data** (`data/penguins.csv`): CC0 1.0 public domain, courtesy of the Palmer Station LTER
+- **Data** (`penguins.csv`): CC0 1.0 public domain, courtesy of the Palmer Station LTER
   and the `palmerpenguins` authors.

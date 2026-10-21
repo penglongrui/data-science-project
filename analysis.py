@@ -17,11 +17,11 @@ but each species was sampled on only one or two islands. This project asks:
 Run:
     python analysis.py
 
-Outputs:
-    figures/fig1_species_clusters.png
-    figures/fig2_island_confound.png
-    figures/fig3_model_diagnostics.png
-    results/metrics.json
+Outputs (written next to this script):
+    fig1_species_clusters.png
+    fig2_island_confound.png
+    fig3_model_diagnostics.png
+    metrics.json
 """
 
 from __future__ import annotations
@@ -39,9 +39,12 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import StratifiedKFold, cross_val_predict, cross_val_score
 
-DATA_PATH = Path(__file__).parent / "data" / "penguins.csv"
-FIG_DIR = Path(__file__).parent / "figures"
-RES_DIR = Path(__file__).parent / "results"
+# Everything lives in the same folder as this script, so a fresh clone runs with no
+# path juggling: the data file is read from here and the figures are written back here.
+BASE_DIR = Path(__file__).parent
+DATA_PATH = BASE_DIR / "penguins.csv"
+FIG_DIR = BASE_DIR
+RES_DIR = BASE_DIR
 
 # Colour-blind-safe qualitative palette (Okabe-Ito subset).
 SPECIES_COLOR = {
@@ -293,9 +296,6 @@ def figure_model_diagnostics(df: pd.DataFrame, path: Path) -> dict:
 # 6. Main
 # ----------------------------------------------------------------------------
 def main() -> None:
-    FIG_DIR.mkdir(exist_ok=True)
-    RES_DIR.mkdir(exist_ok=True)
-
     df, audit = load_data()
     print(f"Raw rows: {audit['rows_raw']} | analysis rows: {audit['rows_clean']} "
           f"| dropped: {audit['rows_dropped']}")
