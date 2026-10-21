@@ -1,0 +1,84 @@
+{
+  "data_audit": {
+    "rows_raw": 344,
+    "missing_by_column": {
+      "species": 0,
+      "island": 0,
+      "bill_length_mm": 2,
+      "bill_depth_mm": 2,
+      "flipper_length_mm": 2,
+      "body_mass_g": 2,
+      "sex": 11,
+      "year": 0
+    },
+    "species": {
+      "Adelie": 152,
+      "Gentoo": 124,
+      "Chinstrap": 68
+    },
+    "islands": {
+      "Biscoe": 168,
+      "Dream": 124,
+      "Torgersen": 52
+    },
+    "rows_clean": 333,
+    "rows_dropped": 11
+  },
+  "species_clusters": {
+    "bill_length_eta_squared_by_species": 0.707,
+    "bill_length_anova_F": 397.3,
+    "bill_length_anova_p": 1.3809842053149165e-88
+  },
+  "island_confound": {
+    "eta_squared_body_mass_by_species": 0.674,
+    "eta_squared_body_mass_by_island": 0.389,
+    "cramers_v_species_island": 0.651,
+    "species_island_crosstab": {
+      "Biscoe": {
+        "Adelie": 44,
+        "Chinstrap": 0,
+        "Gentoo": 119
+      },
+      "Dream": {
+        "Adelie": 55,
+        "Chinstrap": 68,
+        "Gentoo": 0
+      },
+      "Torgersen": {
+        "Adelie": 47,
+        "Chinstrap": 0,
+        "Gentoo": 0
+      }
+    },
+    "adelie_eta_squared_by_island": 0.0001,
+    "adelie_island_anova_p": 0.9952
+  },
+  "model": {
+    "model": "RandomForestClassifier(n_estimators=500, min_samples_leaf=2)",
+    "cv_accuracy_mean": 0.97,
+    "cv_accuracy_std": 0.023,
+    "feature_importance": {
+      "body_mass_g": 0.078,
+      "bill_depth_mm": 0.164,
+      "flipper_length_mm": 0.335,
+      "bill_length_mm": 0.423
+    },
+    "confusion_matrix": [
+      [
+        141,
+        5,
+        0
+      ],
+      [
+        4,
+        64,
+        0
+      ],
+      [
+        0,
+        1,
+        118
+      ]
+    ]
+  }
+}

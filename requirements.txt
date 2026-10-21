@@ -1,0 +1,9 @@
+# Runtime dependencies for the Palmer Penguins analysis.
+# Tested with Python 3.13 / pandas 3.0 / numpy 2.5 / matplotlib 3.11 / scikit-learn 1.9.
+# Lower bounds are kept loose so the analysis also runs on older stable releases.
+
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+scipy>=1.10
+scikit-learn>=1.3

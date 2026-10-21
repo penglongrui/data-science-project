@@ -1,0 +1,19 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Secrets - never commit these
+.env
+*.key
+*.pem
+secrets.json
+
+# OS noise
+.DS_Store
+Thumbs.db
